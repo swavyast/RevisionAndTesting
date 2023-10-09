@@ -21,10 +21,4 @@ public class BinaryConversion {
 	}
 	System.out.println("Binary representation of "+temp+" is : "+result);
 	}
-
-	public static void main(String[] args) {
-		
-
-	}
-
 }
