@@ -52,7 +52,8 @@ public class DeclarationSyntaxes {
 								/* Cannot make a static reference to the non-static field 'x' */
 		DeclarationSyntaxes ds=new DeclarationSyntaxes();
 		ds.methodOne();
-		System.out.println("Value of class level variable x in class DeclarationSyntaxes : "+ds.x);
+		System.out.println("Value of class level variable x in class DeclarationSyntaxes : "+ds.x); 
+		//prints default value of integer type because variable is not initialized.
 		System.out.println("Value of class level variable y in class DeclarationSyntaxes : "+ds.y);
 		System.out.println("Value of class level variable a in class DeclarationSyntaxes : "+ds.a);
 		System.out.println("Value of class level variable b in class DeclarationSyntaxes : "+ds.b);
