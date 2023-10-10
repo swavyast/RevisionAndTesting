@@ -5,6 +5,7 @@ public class DeclarationSyntaxes {
 	int y=10;			//class level variable initialization
 	int a, b, c;			//class level variable - batch declaration
 	int m=20, n=30, o=40;			//class level variables - batch initialization
+	static int v1=25;
 	
 	//public method without return type
 	public void methodOne() {
@@ -81,6 +82,8 @@ public class DeclarationSyntaxes {
 		System.out.println("Value of local variable m in method xyz : "+F);
 		System.out.println("Value of local variable m in method xyz : "+b1);
 		System.out.println("Value of local variable m in method xyz : "+s1);
+		
+		System.out.println("Value of static variable v1 : "+v1);
 	}
 
 }
