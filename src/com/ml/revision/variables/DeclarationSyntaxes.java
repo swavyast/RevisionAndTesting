@@ -1,17 +1,36 @@
 package com.ml.revision.variables;
 
 public class DeclarationSyntaxes {
-	int x;			//class level variable declaration
-	int y=10;			//class level variable initialization
-	int a, b, c;			//class level variable - batch declaration
-	int m=20, n=30, o=40;			//class level variables - batch initialization
-	static int v1=25;
+	int x;			//instance(non=static) variable declaration
+	int y=10;			//instance(non=static) variable declaration & initialization
+	int a, b, c;			//instance(non=static) variable - batch declaration
+	int m=20, n=30, o=40;			//instance(non=static) variables - batch declaration & initialization
+	static int v1=25;		//class variable declaration & initialization
+		
+		/**Duplicate field DeclarationSyntaxes.x*/
+	
+	//int x=67;
+	
+	/**Duplicate field DeclarationSyntaxes.x*/
+	
+	//static int v1=90;
 	
 	//public method without return type
 	public void methodOne() {
 		int x; // before it's use, it must be initialized with a certain value.
-		x=36;			//local variable
+		
+			/**Cannot make a static reference to the 
+			non-static field DeclarationSyntaxes.x*/
+		//x=DeclarationSyntaxes.x;	
+		
+			//The local variable x may not have been initialized
+		
+		//System.out.println("Value of local variable x inside local context of methodOne : "+x);
+		
+		x=new DeclarationSyntaxes().x;
 		System.out.println("Value of local variable x inside local context of methodOne : "+x);
+		x=89;
+		System.out.println("Value of local variable x inside local context of methodOne after re-initialization : "+x);
 	}
 	
 	//method with return type
@@ -45,7 +64,34 @@ public class DeclarationSyntaxes {
 	//static block
 	static {
 		float val=2.36f;			//local variable
+        		/**
+        		val+=new DeclarationSyntaxes().y;
+        		System.out.println("Value of val with y : "+val); 12.36
+        		*/
 		System.out.println("Value of local variable val in static block : "+val);
+		val+=v1;
+		System.out.println("Value of local variable val in static block after adding static variable v1 : "+val);
+		
+		/**Type mismatch: cannot convert from float to int*/
+		//v1=val+v1; 
+		v1=(int) (val+v1);
+		System.out.println("Changed value of static variable v1 inside static context of class DeclarationSyntaxes : "+v1);
+		val=v1+val;
+		System.out.println("Changed value of val : "+val);
+		double result=v1+val;
+		System.out.println("Changing the type of resultant variable result : "+result);
+		
+		/**Type mismatch: cannot convert from float to long*/
+		//long res=v1+val;
+		long res=(long) (v1+val);
+		System.out.println("result of res=v1+val in long format : "+res);
+		float res1=v1+val;
+		System.out.println("result of res1=v1+val in float format : "+res1);
+		
+		/** Cannot make a static reference to the non-static field y */
+		//val+=y;
+		val+=new DeclarationSyntaxes().y;
+		System.out.println("Value of val with y : "+val); //89.36? val=79.36(changed value of val)+ y=10.
 	}
 	
 	public static void main(String[] args) {
@@ -53,8 +99,9 @@ public class DeclarationSyntaxes {
 								/* Cannot make a static reference to the non-static field 'x' */
 		DeclarationSyntaxes ds=new DeclarationSyntaxes();
 		ds.methodOne();
-		System.out.println("Value of class level variable x in class DeclarationSyntaxes : "+ds.x); 
+		
 		//prints default value of integer type because variable is not initialized.
+		System.out.println("Value of class level variable x in class DeclarationSyntaxes : "+ds.x); 
 		System.out.println("Value of class level variable y in class DeclarationSyntaxes : "+ds.y);
 		System.out.println("Value of class level variable a in class DeclarationSyntaxes : "+ds.a);
 		System.out.println("Value of class level variable b in class DeclarationSyntaxes : "+ds.b);
@@ -62,9 +109,25 @@ public class DeclarationSyntaxes {
 		System.out.println("Value of class level variable m in class DeclarationSyntaxes : "+ds.m);
 		System.out.println("Value of class level variable n in class DeclarationSyntaxes : "+ds.n);
 		System.out.println("Value of class level variable o in class DeclarationSyntaxes : "+ds.o);
-		//System.out.println(ds.var); /* var can't be resolved or is not a field*/
-		//System.out.println(val); /* val can't be resolved to a variable*/
-		//System.out.println(var); /* val can't be resolved to a variable*/
+		
+			/** var can't be resolved or is not a field, because var is declared inside a local context 
+			 * and is accessible in it's local context only */
+		
+		//System.out.println(ds.var);	
+		
+			/** val can't be resolved to a variable, because var is declared inside a local context 
+			 * and is accessible in it's local context only */
+		
+		//System.out.println(val); 
+
+			/** var can't be resolved to a variable, because var is declared inside a local context 
+			 * and is accessible in it's local context only*/
+		
+		//System.out.println(var); 
+		
+			/** var cannot be resolved or is not a field, */
+		
+		//System.out.println(DeclarationSyntaxes.var); 
 		
 		System.out.println("Value of local variable res in method add : "+ds.add(23, 3.6f));
 		System.out.println("Value of local variable res in method add : "+ds.add(45.23f, 55));
@@ -84,6 +147,7 @@ public class DeclarationSyntaxes {
 		System.out.println("Value of local variable m in method xyz : "+s1);
 		
 		System.out.println("Value of static variable v1 : "+v1);
+		//System.out.println(ds.val);
 	}
 
 }
