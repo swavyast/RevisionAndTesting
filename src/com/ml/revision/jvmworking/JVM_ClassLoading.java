@@ -3,13 +3,16 @@ package com.ml.revision.jvmworking;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.security.SecureClassLoader;
 
 public class JVM_ClassLoading {
 
-    public void printClassLoaders(Test t) {
+    public void printClassLoaders(Test t){
 
 	//Fully Qualified ClassName
 	System.out.println("Class Name : " + t.getClass().getName());
@@ -40,12 +43,22 @@ public class JVM_ClassLoading {
 	//DriverManager ClassLoader
 	System.out.println("DriverManager Class Name : " + DriverManager.class.getClassLoader());
     }
-
-    public static void main(String[] args) {
-
+	static {
+    //LoadingArrayList Using User-Defined ClassLoader
+	try{
+	    ClassLoader cl=new ClassLoader() {};
+	}catch(Exception e) {
+	    e.printStackTrace();
+	}
+	}
+	
+    public static void main(String[] args) throws MalformedURLException{;
+	//ClassLoader clsl = new MyClassLoader(new URL[]{new URL("google.com"), new URL("google.com")});
+	//System.out.println(" clsl parent "+clsl.getParent());
 	JVM_ClassLoading main = new JVM_ClassLoading();
 	Test t1 = new Test();
 	main.printClassLoaders(t1);
+	System.out.print("ClassLoader AnonymousClass : " );
     }
 }
 
