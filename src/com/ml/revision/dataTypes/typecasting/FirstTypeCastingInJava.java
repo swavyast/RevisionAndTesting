@@ -11,6 +11,7 @@ public class FirstTypeCastingInJava {
 	short y=x;
 	int a=y;
 	long b=a;
+	//long(64 bit/8byte) has smaller range than float(32bit/4byte).
 	float c=b;
 	double d=c;
 	System.out.println("\n\nbyte representation : "+x);
