@@ -3,10 +3,12 @@ package com.ml.revision.algorithms;
 import java.util.Scanner;
 
 /**
- * Write a program to pring combination of three digit numbers.
+ * Write a program to print the combination of three digit numbers.
  * example: if the digits of numbers are 1, 2 and 3, print : 123, 132, 231, 213, 312 and 321.
  * */
 public class CombinationOfThreeDigitNumbers {
+    
+    public static int length = 0;
 
     public static void main(String[] args) {
 	System.out.println("Enter your digits : ");
