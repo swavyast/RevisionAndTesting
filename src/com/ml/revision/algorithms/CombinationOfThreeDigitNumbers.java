@@ -9,8 +9,6 @@ import java.util.Scanner;
  */
 public class CombinationOfThreeDigitNumbers {
 
-    public static int length = 0;
-
     public static void main(String[] args) {
 	System.out.println("Enter your digits : ");
 	Scanner scanner = new Scanner(System.in);
@@ -22,7 +20,7 @@ public class CombinationOfThreeDigitNumbers {
 	    for (int y = 0; y < 3; y++) {
 		for (int z = 0; z < 3; z++) {
 		    if (x != y && y != z && z != x)
-			System.out.println(" : " + inputArray[x]+ inputArray[y] + inputArray[z] + "\n");
+			System.out.println("Combination : " + inputArray[x]+ inputArray[y] + inputArray[z] + "\n");
 		}
 	    }
 	}
