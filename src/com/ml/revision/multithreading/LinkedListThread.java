@@ -30,6 +30,7 @@ public class LinkedListThread {
 		System.out.print(l1.getNode());
 		System.out.print(l2.getNode());
 		System.out.print(l3.getNode());
+		System.out.println("\n\n\n");
 	}
 
 }
