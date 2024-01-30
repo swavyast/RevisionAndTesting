@@ -39,5 +39,4 @@ public class Constructors {
 		System.out.println(t1.test);
 		Test t2 = null;
 	}
-
 }
