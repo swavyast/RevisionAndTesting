@@ -29,16 +29,12 @@ public class FailSafeIterators {
 		li.add("I am");
 		li.add("Himanshu");
 		List<String> snap = new ArrayList<String>(li);
-		synchronized (li) {
-			Iterator<String> it = snap.iterator();
-			li.add("and I'm FailSafe");
-			while (it.hasNext()) {
-				String item = it.next();
-				System.out.print(item+"  ");
-				if(!it.hasNext())
-					System.out.println(li.get(li.size()-1));
-			}	
-		}
+		Iterator<String> it = snap.iterator();
+		li.add("and I'm FailSafe");
+		while (it.hasNext()) {
+			String item = it.next();
+			System.out.print(item+"  ");
+		}System.out.println(li.get(li.size()-1));
 		System.out.println("\n------------------------------------------------------");
 		CopyOnWriteArrayList<String> cowal = new CopyOnWriteArrayList<String>();
 		cowal.add("Hello");
