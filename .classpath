@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-20">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="E:/Java Full Stack/JTC India/Frameworks/JAR Archieves/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar"/>
-	<classpathentry kind="lib" path="E:/Java Full Stack/JTC India/Frameworks/All JARs/jol-cli-0.17.jar"/>
-	<classpathentry kind="lib" path="E:/Java Full Stack/JTC India/Frameworks/All JARs/jol-core-0.17.jar"/>
-	<classpathentry kind="lib" path="E:/Java Full Stack/JTC India/Frameworks/All JARs/jopt-simple-4.6.jar"/>
+	<classpathentry kind="lib" path="E:/JAR_Files/jol-cli-0.17.jar"/>
+	<classpathentry kind="lib" path="E:/JAR_Files/jol-core-0.17.jar"/>
+	<classpathentry kind="lib" path="E:/JAR_Files/jopt-simple-4.6.jar"/>
+	<classpathentry kind="lib" path="E:/JAR_Files/MySQL JARs/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
