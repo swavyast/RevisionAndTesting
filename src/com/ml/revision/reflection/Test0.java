@@ -1,9 +1,7 @@
 package com.ml.revision.reflection;
 
-import java.lang.reflect.AccessFlag;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Modifier;
-import java.util.HashSet;
+import java.lang.reflect.InvocationTargetException;
 
 class Animal {
 	private int id;
@@ -13,20 +11,26 @@ class Animal {
 	private Hand hands;
 	private Leg legs;
 
-	public Animal() {
+	private Animal() {
 		System.out.println("Default constructor in Animal class");
 	}
 
 	static {
 		System.out.println("Static Block Inside Animal Class");
 	}
-	
+
 	public void makeSound() {
 		System.out.println("Animal makes sound");
 	}
-	
+
 	public void walk() {
-		System.out.println("");
+		System.out.println("walking...");
+	}
+
+	public String getAll() {
+
+		return "[ className : "+this.getClass() + "\n instance Id : " + this.getId() + "\n Animal Name :" + this.getName() + "\n" + this.getColor() + "\n"
+				+ this.getEyes() + "\n" + this.getHands() + "\n" + this.getLegs()+"]";
 	}
 
 	public int getId() {
@@ -79,8 +83,8 @@ class Animal {
 
 	@Override
 	public String toString() {
-		return "Animal [id=" + id + ", name=" + name + ", color=" + color.value + ", eyes=" + eyes.value + ", hands=" + hands.value
-				+ ", legs=" + legs.value + "]";
+		return "Animal [id=" + id + ", name=" + name + ", color=" + color.value + ", eyes=" + eyes.value + ", hands="
+				+ hands.value + ", legs=" + legs.value + "]";
 	}
 
 }
@@ -94,29 +98,32 @@ enum Color {
 		this.value = v;
 	}
 }
+
 enum Leg {
 	TWO("Two"), FOUR("Four");
-	
+
 	String value;
-	
+
 	Leg(String v) {
 		this.value = v;
 	}
 }
+
 enum Eye {
 	TWO("Two"), FOUR("Four");
-	
+
 	String value;
-	
+
 	Eye(String v) {
 		this.value = v;
 	}
 }
+
 enum Hand {
 	TWO("Two"), NONE("");
-	
+
 	String value;
-	
+
 	Hand(String v) {
 		this.value = v;
 	}
@@ -127,15 +134,34 @@ public class Test0 {
 	public static void main(String[] args) throws NoSuchMethodException {
 		try {
 			Class<?> cl = Class.forName("com.ml.revision.reflection.Animal");
-			Animal animal = (Animal)cl.newInstance();
-			animal.setId(0);
-			animal.setName("Dog");
-			animal.setColor(Color.GREY);
-			animal.setEyes(Eye.TWO);
-			animal.setLegs(Leg.FOUR);
-			animal.setHands(Hand.NONE);
-			System.out.println(animal);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SecurityException e) {
+			/**
+			 * This block of code can be used to access the constructor of animal class
+			 * using reflection when access modifier for Animal class constructor is public.
+			 * 
+			 * Animal animal = (Animal)cl.newInstance(); animal.setId(0);
+			 * animal.setName("Dog"); animal.setColor(Color.GREY); animal.setEyes(Eye.TWO);
+			 * animal.setLegs(Leg.FOUR); animal.setHands(Hand.NONE);
+			 * System.out.println(animal);
+			 */
+			// even when the constructor is defined as private, it can be accessed using
+			// reflection as mentioned below.
+			Constructor<?> c = cl.getDeclaredConstructor(); // Class gets loaded here.
+			c.setAccessible(true); // access specifier of the constructor gets changed from private to public.
+			Animal animal1 = (Animal) c.newInstance(); // new instance is created using already modified constructor.
+			/**
+			 * setting instance members using corresponding setter methods.
+			 */
+			animal1.setId(1);
+			animal1.setName("Cat");
+			animal1.setColor(Color.WHITE);
+			animal1.setEyes(Eye.TWO);
+			animal1.setLegs(Leg.FOUR);
+			animal1.setHands(Hand.NONE);
+			System.out.println(animal1); // calling overridden toString method by means of print stream.
+			animal1.makeSound(); // prints 'Animal makes sound'.
+			animal1.walk(); // prints 'walking...'.
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SecurityException
+				| IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
